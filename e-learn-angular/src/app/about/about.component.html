@@ -1,0 +1,204 @@
+<div class="container" *ngIf="currentUserRole=='ROLE_USER'">
+  <div class="jumbotron text-center">
+    <h1>
+      <span translate>APP_NAME</span>
+    </h1>
+    <p><i class="fa-solid fa-square-check"></i> enrolled course</p>
+
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">course name</th>
+            <th scope="col">course description</th>
+            <th scope="col">duration</th>
+            <th scope="col">trainer</th>
+            <th>max registrations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let course of userCourse">
+            <th>{{ course.name }}</th>
+            <td>{{ course.description }}</td>
+            <td>{{ course.duration }}</td>
+            <td>{{ course.trainer }}</td>
+            <td>{{course.maxRegistrations}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="currentUserRole=='ROLE_ADMIN'">
+  <div class="text-end my-md-2">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" (click)="addCourse()">
+      add course
+    </button>
+  </div>
+  <table class="table table-hover table-bordered table-responsive table-light">
+    <thead>
+      <tr class="text-center">
+        <th scope="col">course name</th>
+        <th scope="col">description</th>
+        <th scope="col">duration</th>
+        <th scope="col">trainer</th>
+        <th>max registrations</th>
+        <th>enrolled registrations</th>
+        <th scope="col">action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courses">
+        <td>{{ course.name }}</td>
+        <td>{{ course.description }}</td>
+        <td>{{ course.duration | date:'MMMM y' }}</td>
+        <td>{{ course.trainer }}</td>
+        <td>{{course.maxRegistrations}}</td>
+        <td>{{course.noOfRegistrations}}</td>
+        <td>
+      <tr>
+        <td><span data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn"
+            (click)="viewCourse(course.name)"><i class="fa-solid fa-users-viewfinder"></i></span></td>
+        <td><span data-bs-toggle="modal" data-bs-target="#exampleModal1" class="btn"
+            (click)="updateCourse(course.name)"><i class="fa-solid fa-pen-to-square"></i></span></td>
+        <td><span class="btn" (click)="message=deleteCourse(course.id)"><i class="fa-solid fa-trash"></i></span></td>
+      </tr>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update course</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form (ngSubmit)="saveUpdate()" [formGroup]="addForm" novalidate>
+        <div class="modal-body">
+
+          <div class="row my-3">
+            <div class="col-2"> <label for="exampleInputEmail1" class="form-label">course name </label></div>
+            <div class="col-10"><input type="text" class="form-control" formControlName="name"></div>
+          </div>
+          <div class="row my-3">
+            <div class="col-2"> <label for="exampleInputEmail1" class="form-label">course description </label></div>
+            <div class="col-10"><input type="text" class="form-control" formControlName="description"></div>
+          </div>
+          <div class="row my-3">
+            <div class="col-2"> <label for="exampleInputEmail1" class="form-label">course duration </label></div>
+            <div class="col-10"><input type="date" class="form-control" formControlName="duration"></div>
+          </div>
+          <div class="row my-3">
+            <div class="col-2"> <label for="exampleInputEmail1" class="form-label">course trainer </label></div>
+            <div class="col-10"><input type="text" class="form-control" formControlName="trainer"></div>
+          </div>
+          <div class="row my-3">
+            <div class="col-2"> <label for="exampleInputEmail1" class="form-label">max registrations </label></div>
+            <div class="col-10"><input type="number" class="form-control" formControlName="maxRegistrations"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+        
+          <button type="submit" [disabled]="addForm.invalid" class="btn btn-primary" data-bs-dismiss="modal">
+            Save changes
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">users</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#id</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">job Title</th>
+              <th scope="col">phone Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>{{user.id}}</td>
+              <td>{{user.firstName}}</td>
+              <td>{{user.lastName}}</td>
+              <td>{{user.jobTitle}}</td>
+              <td>{{user.phoneNumber}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add course</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form (ngSubmit)="addCourse()" [formGroup]="addForm" novalidate>
+        <div class="modal-body">
+
+          <div class="row my-3">
+            <div class="col-2"> <label for="exampleInputEmail1" class="form-label">course name </label></div>
+            <div class="col-10"><input type="text" class="form-control" formControlName="name"></div>
+          </div>
+          <div class="row my-3">
+            <div class="col-2"> <label for="exampleInputEmail1" class="form-label">course description </label></div>
+            <div class="col-10"><input type="text" class="form-control" formControlName="description"></div>
+          </div>
+          <div class="row my-3">
+            <div class="col-2"> <label for="exampleInputEmail1" class="form-label">course duration </label></div>
+            <div class="col-10"><input type="date" class="form-control" formControlName="duration"></div>
+          </div>
+          <div class="row my-3">
+            <div class="col-2"> <label for="exampleInputEmail1" class="form-label">course trainer </label></div>
+            <div class="col-10"><input type="text" class="form-control" formControlName="trainer"></div>
+          </div>
+          <div class="row my-3">
+            <div class="col-2"> <label for="exampleInputEmail1" class="form-label">maximum registration </label></div>
+            <div class="col-10"><input type="number" class="form-control" formControlName="maxRegistrations"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="addForm.invalid">
+            Save changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
