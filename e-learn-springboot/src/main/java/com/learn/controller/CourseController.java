@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200/", allowedHeaders = "*")
 @RestController
 @RequestMapping("api")
-
+@CrossOrigin()
 public class CourseController {
     /**
      * Autowired instance of {@link CourseService} to handle the course related operations.

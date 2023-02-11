@@ -23,10 +23,10 @@ import java.lang.reflect.InvocationTargetException;
 
  @since [YYYY-MM-DD]
  **/
-@CrossOrigin(origins="http://localhost:4200")
+
 @RestController
 @RequestMapping("/auth")
-
+@CrossOrigin
 public class AuthController {
 
     /**
