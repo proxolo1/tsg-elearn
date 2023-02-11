@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
 import { CourseService } from './course.service';
 
@@ -13,11 +14,12 @@ export class HomeComponent implements OnInit {
   courses: any | undefined;
   isLoading = false;
 
-  constructor(private courseService: CourseService) {}
+  constructor(private courseService: CourseService,private toaster:ToastrService) {}
 
   ngOnInit() {
     this.isLoading = true;
     this.getCourse();
+    this.toaster.success("hello")
   }
   enrollCourse(id: number) {
     this.courseService.enrollCourse(id).subscribe((res) => {

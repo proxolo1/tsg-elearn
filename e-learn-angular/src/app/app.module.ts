@@ -15,9 +15,12 @@ import { HomeModule } from './home/home.module';
 import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
+    ToastrModule.forRoot( {
+      positionClass: 'toast-bottom-right'}),
     BrowserModule,
     ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
@@ -31,6 +34,7 @@ import { AppRoutingModule } from './app-routing.module';
     AuthModule,
     Angulartics2Module.forRoot(),
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
+
   ],
   declarations: [AppComponent],
   providers: [
