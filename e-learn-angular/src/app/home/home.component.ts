@@ -13,36 +13,46 @@ import { QuoteService } from './quote.service';
 export class HomeComponent implements OnInit {
   courses: any | undefined;
   isLoading = false;
-
-  constructor(private courseService: CourseService,private toaster:ToastrService) {}
+  message!:any;
+  i:number=0;
+  constructor(
+    private courseService: CourseService,
+    private toaster: ToastrService
+  ) {}
 
   ngOnInit() {
     this.isLoading = true;
     this.getCourse();
-    this.toaster.success("hello")
   }
   enrollCourse(id: number) {
-    this.courseService.enrollCourse(id).subscribe((res) => {
-      console.log(res);
-      alert(JSON.stringify(res))
-      this.getCourse();
-    },error=>{
-      alert(error.error.message)
-    });
+    this.courseService.enrollCourse(id).subscribe(
+      (res) => {
+       this.message=res;
+       this.toaster.info(this.message.message)
+        this.getCourse();
+      },
+      (error) => {
+        this.toaster.error(error.error.message)
+        alert(error.error.message);
+      }
+    );
   }
-  getMonthsDifference(inputDate:any){
+  getMonthsDifference(inputDate: any) {
     const targetDate = new Date(inputDate);
-      const currentDate = new Date();
-      const differenceInTime = targetDate.getTime() - currentDate.getTime();
-     return Math.floor(differenceInTime / (1000 * 60 * 60 * 24 * 30));
+    const currentDate = new Date();
+    const differenceInTime = targetDate.getTime() - currentDate.getTime();
+    return Math.floor(differenceInTime / (1000 * 60 * 60 * 24 * 30));
   }
-  getCourse(){
-    this.courseService.getCourse().subscribe((res) => {
-      this.isLoading = false;
-      this.courses = res;
-      
-    },error=>{
-      alert(error);
-    });
+  getCourse() {
+    this.courseService.getCourse().subscribe(
+      (res) => {
+        this.isLoading = false;
+        this.courses = res;
+      },
+      (error) => {
+        alert(error);
+      }
+    );
   }
+
 }

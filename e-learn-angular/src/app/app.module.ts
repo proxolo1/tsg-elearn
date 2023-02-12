@@ -9,7 +9,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Angulartics2Module } from 'angulartics2';
 
 import { environment } from '@env/environment';
-import { RouteReusableStrategy, ApiPrefixInterceptor, ErrorHandlerInterceptor, SharedModule } from '@shared';
+import {
+  RouteReusableStrategy,
+  ApiPrefixInterceptor,
+  ErrorHandlerInterceptor,
+  SharedModule,
+} from '@shared';
 import { AuthModule } from '@app/auth';
 import { HomeModule } from './home/home.module';
 import { ShellModule } from './shell/shell.module';
@@ -19,10 +24,13 @@ import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
-    ToastrModule.forRoot( {
-      positionClass: 'toast-bottom-right'}),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
     BrowserModule,
-    ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('./ngsw-worker.js', {
+      enabled: environment.production,
+    }),
     FormsModule,
     HttpClientModule,
     RouterModule,
@@ -34,7 +42,6 @@ import { ToastrModule } from 'ngx-toastr';
     AuthModule,
     Angulartics2Module.forRoot(),
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
-
   ],
   declarations: [AppComponent],
   providers: [

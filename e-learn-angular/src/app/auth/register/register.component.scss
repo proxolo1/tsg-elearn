@@ -6,8 +6,10 @@
   top: 0;
   bottom: 0;
   left: 0;
+  background-color: #090944;
   right: 0;
 }
+
 
 .login-box {
   display: flex;
@@ -21,7 +23,8 @@
 .ng-invalid.ng-touched:not(form) {
   border-left: 4px solid theme-color("danger");
 }
-input,select{
+input,
+select {
   border: 0;
   border-bottom: 1px solid black;
   border-radius: 0;

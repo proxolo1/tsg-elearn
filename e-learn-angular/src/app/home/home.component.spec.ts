@@ -13,7 +13,12 @@ describe('HomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, Angulartics2Module.forRoot(), SharedModule, HttpClientTestingModule],
+      imports: [
+        RouterTestingModule,
+        Angulartics2Module.forRoot(),
+        SharedModule,
+        HttpClientTestingModule,
+      ],
       declarations: [HomeComponent],
       providers: [QuoteService],
     }).compileComponents();

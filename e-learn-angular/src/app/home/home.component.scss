@@ -1,3 +1,4 @@
+@import "src/theme/theme-variables";
 .logo {
   width: 100px;
 }
@@ -7,21 +8,21 @@ q {
   font-size: 1.2rem;
   quotes: "« " " »";
 }
-app-loader{
+app-loader {
   position: absolute;
   top: 50%;
   left: 50%;
 }
-.card-title{
-  font-family: fantasy ;
+.card-title {
+  font-family: fantasy;
 }
-.card{
+.card {
   background: whitesmoke !important;
-  box-shadow:  3px 8px 10px 0px rgb(0 0 0 / 28%) !important;
--webkit-box-shadow: 2px 3px 25px 0px rgba(255,255,255,0.56) inset;
--moz-box-shadow: 2px 3px 25px 0px rgba(255,255,255,0.56) inset;
+  box-shadow: 3px 8px 10px 0px rgb(0 0 0 / 28%) !important;
+  -webkit-box-shadow: 2px 3px 25px 0px rgba(255, 255, 255, 0.56) inset;
+  -moz-box-shadow: 2px 3px 25px 0px rgba(255, 255, 255, 0.56) inset;
 }
-.card:hover{
+.card:hover {
   box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 28%) !important;
 }
 /* this button is inspired from this -- https://www.newline.co/pricing */
@@ -32,14 +33,29 @@ button {
   width: var(--width);
   color: #fff;
   font-weight: bold;
-  background: rgb(64, 192, 87);
+  background: #2e2e91;
   transition: all 0.2s;
   border-radius: 3px;
   box-shadow: inset 3px 8px 10px 0px rgb(0 0 0 / 28%) !important;
 }
 
 button:hover {
-  background-image: linear-gradient(to right, rgb(250, 82, 82), rgb(250, 82, 82) 16.65%, rgb(190, 75, 219) 16.65%, rgb(190, 75, 219) 33.3%, rgb(76, 110, 245) 33.3%, rgb(76, 110, 245) 49.95%, rgb(64, 192, 87) 49.95%, rgb(64, 192, 87) 66.6%, rgb(250, 176, 5) 66.6%, rgb(250, 176, 5) 83.25%, rgb(253, 126, 20) 83.25%, rgb(253, 126, 20) 100%, rgb(250, 82, 82) 100%);
+  background-image: linear-gradient(
+    to right,
+    rgb(250, 82, 82),
+    rgb(250, 82, 82) 16.65%,
+    rgb(190, 75, 219) 16.65%,
+    rgb(190, 75, 219) 33.3%,
+    rgb(76, 110, 245) 33.3%,
+    rgb(76, 110, 245) 49.95%,
+    rgb(64, 192, 87) 49.95%,
+    rgb(64, 192, 87) 66.6%,
+    rgb(250, 176, 5) 66.6%,
+    rgb(250, 176, 5) 83.25%,
+    rgb(253, 126, 20) 83.25%,
+    rgb(253, 126, 20) 100%,
+    rgb(250, 82, 82) 100%
+  );
   animation: var(--timing) linear dance6123 infinite;
   transform: scale(1.1) translateY(-1px);
 }
@@ -49,4 +65,3 @@ button:hover {
     background-position: var(--width);
   }
 }
-

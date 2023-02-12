@@ -1,17 +1,20 @@
-<div class="login-container bg-light">
+<div class="login-container">
   <div class="login-box">
-    
-    <div>
-     
-    </div>
-    <div class="container">
-      <div class="card col-md-4  mx-auto">
+    <div></div>
+    <div class="container register">
+      <div class="card col-md-4 mx-auto">
         <div class="card-body">
           <h4 class="card-title text-center">
-            <h3 translate>Registration</h3>
+            <h3  translate>Registration</h3>
           </h4>
           <form (ngSubmit)="register()" [formGroup]="loginForm" novalidate>
-            <div class="alert alert-danger" [hidden]="!error || isLoading" translate>email or password incorrect.</div>
+            <div
+              class="alert alert-danger"
+              [hidden]="!error || isLoading"
+              translate
+            >
+              email or password incorrect.
+            </div>
             <div class="m-3">
               <label class="d-block my-3">
                 <input
@@ -23,7 +26,10 @@
                 />
                 <span hidden translate>first name</span>
                 <small
-                  [hidden]="loginForm.controls['firstName'].valid || loginForm.controls['firstName'].untouched"
+                  [hidden]="
+                    loginForm.controls['firstName'].valid ||
+                    loginForm.controls['firstName'].untouched
+                  "
                   class="text-danger"
                   translate
                 >
@@ -40,7 +46,10 @@
                 />
                 <span hidden translate>last name</span>
                 <small
-                  [hidden]="loginForm.controls['lastName'].valid || loginForm.controls['lastName'].untouched"
+                  [hidden]="
+                    loginForm.controls['lastName'].valid ||
+                    loginForm.controls['lastName'].untouched
+                  "
                   class="text-danger"
                   translate
                 >
@@ -57,7 +66,10 @@
                 />
                 <span hidden translate>email address</span>
                 <small
-                  [hidden]="loginForm.controls['email'].valid || loginForm.controls['email'].untouched"
+                  [hidden]="
+                    loginForm.controls['email'].valid ||
+                    loginForm.controls['email'].untouched
+                  "
                   class="text-danger"
                   translate
                 >
@@ -65,16 +77,24 @@
                 </small>
               </label>
               <label class="d-block my-3">
-                <select id="job" name="jobtitle" class="form-control custom-select " formControlName="jobTitle">
+                <select
+                  id="job"
+                  name="jobtitle"
+                  class="form-control custom-select"
+                  formControlName="jobTitle"
+                >
                   <option value="">Choose your job</option>
                   <option value="Designer">Designer</option>
                   <option value="Developer">Developer</option>
                   <option value="Manager">Manager</option>
                   <option value="Accountant">Accountant</option>
-              </select>
-                
+                </select>
+
                 <small
-                  [hidden]="loginForm.controls['jobTitle'].valid || loginForm.controls['jobTitle'].untouched"
+                  [hidden]="
+                    loginForm.controls['jobTitle'].valid ||
+                    loginForm.controls['jobTitle'].untouched
+                  "
                   class="text-danger"
                   translate
                 >
@@ -91,7 +111,10 @@
                 />
                 <span hidden translate>phone number</span>
                 <small
-                  [hidden]="loginForm.controls['phoneNumber'].valid || loginForm.controls['phoneNumber'].untouched"
+                  [hidden]="
+                    loginForm.controls['phoneNumber'].valid ||
+                    loginForm.controls['phoneNumber'].untouched
+                  "
                   class="text-danger"
                   translate
                 >
@@ -109,7 +132,10 @@
                 />
                 <span hidden translate>Password</span>
                 <small
-                  [hidden]="loginForm.controls['password'].valid || loginForm.controls['password'].untouched"
+                  [hidden]="
+                    loginForm.controls['password'].valid ||
+                    loginForm.controls['password'].untouched
+                  "
                   class="text-danger"
                   translate
                 >
@@ -127,17 +153,29 @@
                 />
                 <span hidden translate>Password</span>
                 <small
-                  [hidden]="loginForm.controls['confirmPassword'].valid || loginForm.controls['confirmPassword'].untouched"
+                  [hidden]="
+                    loginForm.controls['confirmPassword'].valid ||
+                    loginForm.controls['confirmPassword'].untouched
+                  "
                   class="text-danger"
                   translate
                 >
                   Password is required
                 </small>
-                <small class="text-danger" *ngIf="loginForm.errors?.['notSame']"> Passwords do not match</small>
+                <small
+                  class="text-danger"
+                  *ngIf="loginForm.errors?.['notSame']"
+                >
+                  Passwords do not match</small
+                >
               </label>
             </div>
             <div class="m-3">
-              <button class="btn btn-primary w-100" type="submit" [disabled]="loginForm.invalid || isLoading">
+              <button
+                class="btn btn-primary w-100"
+                type="submit"
+                [disabled]="loginForm.invalid || isLoading"
+              >
                 <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
                 <span translate>Login</span>
               </button>

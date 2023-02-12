@@ -9,7 +9,8 @@ import { env } from './.env';
 export const environment = {
   production: true,
   version: env['npm_package_version'],
-  serverUrl: 'http://elearn-env.eba-6x3438k2.ap-northeast-1.elasticbeanstalk.com/',
+  serverUrl:
+    'http://elearn-env.eba-6x3438k2.ap-northeast-1.elasticbeanstalk.com/',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
 };

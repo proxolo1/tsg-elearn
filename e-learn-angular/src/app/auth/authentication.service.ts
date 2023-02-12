@@ -25,7 +25,10 @@ export interface registerContext {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private credentialsService: CredentialsService, private http: HttpClient) {}
+  constructor(
+    private credentialsService: CredentialsService,
+    private http: HttpClient
+  ) {}
   register(context: registerContext) {
     return this.http.post('auth/register', context);
   }

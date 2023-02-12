@@ -8,7 +8,11 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [Angulartics2Module.forRoot(), RouterTestingModule, TranslateModule.forRoot()],
+      imports: [
+        Angulartics2Module.forRoot(),
+        RouterTestingModule,
+        TranslateModule.forRoot(),
+      ],
       declarations: [AppComponent],
       providers: [],
     }).compileComponents();

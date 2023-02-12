@@ -22,14 +22,14 @@ export class LoginComponent implements OnInit {
   error: string | undefined;
   loginForm!: FormGroup;
   isLoading = false;
-
+  message:any;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private credentialService: CredentialsService,
-    private toaster:ToastrService
+    private toaster: ToastrService
   ) {
     this.createForm();
   }
@@ -52,12 +52,15 @@ export class LoginComponent implements OnInit {
           console.log(credentials);
           this.credentialService.setCredentials(credentials, true);
           log.debug(`${this.loginForm.value.email} successfully logged in`);
-          this.router.navigate([this.route.snapshot.queryParams['redirect'] || '/'], { replaceUrl: true });
-         this.toaster.error("login failed")
+          this.router.navigate(
+            [this.route.snapshot.queryParams['redirect'] || '/'],
+            { replaceUrl: true }
+          );
+          this.toaster.info(`${this.loginForm.value.email} login successfully`);
         },
         (error) => {
-          
-          
+          console.log(error)
+          this.message=error;
           log.debug(`Login error: ${error}`);
           this.error = error;
         }

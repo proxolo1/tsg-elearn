@@ -8,9 +8,16 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { ToastrModule } from 'ngx-toastr';
 @NgModule({
-  imports: [CommonModule, TranslateModule, SharedModule, Angulartics2Module, HomeRoutingModule, ToastrModule.forRoot({
-    positionClass: 'toast-bottom-right'
-  })],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    SharedModule,
+    Angulartics2Module,
+    HomeRoutingModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
+  ],
   declarations: [HomeComponent],
 })
-export class HomeModule { }
+export class HomeModule {}

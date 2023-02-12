@@ -5,7 +5,7 @@ export interface Credentials {
   access: boolean;
   token: string;
   email: string;
-  role:string;
+  role: string;
 }
 
 const credentialsKey = 'credentials';
@@ -21,7 +21,9 @@ export class CredentialsService {
   private _credentials: Credentials | null = null;
 
   constructor() {
-    const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
+    const savedCredentials =
+      sessionStorage.getItem(credentialsKey) ||
+      localStorage.getItem(credentialsKey);
     if (savedCredentials) {
       this._credentials = JSON.parse(savedCredentials);
     }
