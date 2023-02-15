@@ -33,9 +33,13 @@
               "src/manifest.webmanifest",
               "src/assets"
             ],
-            "styles": ["src/main.scss",
-            "node_modules/ngx-toastr/toastr.css"],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.js"]
+            "styles": [
+              "src/main.scss",
+              "node_modules/ngx-toastr/toastr.css"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -112,7 +116,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         },
         "cypress-run": {
