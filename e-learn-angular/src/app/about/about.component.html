@@ -6,10 +6,10 @@
     <p><i class="fa-solid fa-square-check"></i> enrolled course</p>
 
     <div class="row">
-      <table class="table">
+      <table class="table user-table">
         <thead>
           <tr>
-            <th scope="col">course name</th>
+            <th scope="col">course name </th>
             <th scope="col">course description</th>
             <th scope="col">duration</th>
             <th scope="col">trainer</th>
@@ -30,26 +30,24 @@
   </div>
 </div>
 
-<div class="container user-table" *ngIf="currentUserRole == 'ROLE_ADMIN'">
+<div class="container admin-table" *ngIf="currentUserRole == 'ROLE_ADMIN'">
   <div class="text-end my-md-2">
-    <button
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal3"
-      (click)="addCourse()"
-    >
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" (click)="addCourse()">
       add course
     </button>
   </div>
-  <table class="table table-hover table-bordered table-responsive">
-    <thead>
+  <table class="table table-bordered table-responsive admin-table">
+    <thead class="bg-dark">
       <tr class="text-center">
-        <th scope="col">course name</th>
+        <th scope="col" (click)="sortCourseName()">Course name<sup *ngIf="!isNameSorted">&#8593;</sup><sup
+            *ngIf="isNameSorted">&#8595;</sup></th>
         <th scope="col">description</th>
-        <th scope="col">duration</th>
+        <th scope="col" (click)="sortCourseDuration()">Duration<sup *ngIf="!isDurationSorted">&#8593;</sup><sup
+            *ngIf="isDurationSorted">&#8595;</sup></th>
         <th scope="col">trainer</th>
         <th>max registrations</th>
-        <th>enrolled registrations</th>
+        <th scope="col" (click)="sortEnrolled()">enrolled registrations<sup *ngIf="!isEnrolledSort">&#8593;</sup><sup
+          *ngIf="isEnrolledSort">&#8595;</sup></th>
         <th scope="col">action</th>
       </tr>
     </thead>
@@ -62,61 +60,37 @@
         <td>{{ course.maxRegistrations }}</td>
         <td>{{ course.noOfRegistrations }}</td>
         <td>
-          <tr>
-            <td>
-              <span
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal2"
-                class="btn"
-                (click)="viewCourse(course.name)"
-                ><i class="fa-solid fa-users-viewfinder"></i
-              ></span>
-            </td>
-            <td>
-              <span
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal1"
-                class="btn"
-                (click)="updateCourse(course.name)"
-                ><i class="fa-solid fa-pen-to-square"></i
-              ></span>
-            </td>
-            <td>
-              <span class="btn" (click)="message = deleteCourse(course.id)"
-                ><i class="fa-solid fa-trash"></i
-              ></span>
-            </td>
-          </tr>
+      <tr>
+        <td>
+          <span data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn" (click)="viewCourse(course.name)"><i
+              class="fa-solid fa-users-viewfinder"></i></span>
         </td>
+        <td>
+          <span data-bs-toggle="modal" data-bs-target="#exampleModal1" class="btn"
+            (click)="updateCourse(course.name)"><i class="fa-solid fa-pen-to-square"></i></span>
+        </td>
+        <td>
+          <span class="btn" (click)="message = deleteCourse(course.id)"><i class="fa-solid fa-trash"></i></span>
+        </td>
+      </tr>
+      </td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<div
-  class="modal fade"
-  id="exampleModal1"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="exampleModal1" data-bs-backdrop="static"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Update course</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form (ngSubmit)="saveUpdate()" [formGroup]="addForm" novalidate>
         <div class="modal-body">
           <div class="row my-3">
             <div class="col-2">
-              <label for="exampleInputEmail1" class="form-label"
-                >course name
+              <label for="exampleInputEmail1" class="form-label">course name
               </label>
             </div>
             <div class="col-10">
@@ -125,68 +99,43 @@
           </div>
           <div class="row my-3">
             <div class="col-2">
-              <label for="exampleInputEmail1" class="form-label"
-                >course description
+              <label for="exampleInputEmail1" class="form-label">course description
               </label>
             </div>
             <div class="col-10">
-              <input
-                type="text"
-                class="form-control"
-                formControlName="description"
-              />
+              <input type="text" class="form-control" formControlName="description" />
             </div>
           </div>
           <div class="row my-3">
             <div class="col-2">
-              <label for="exampleInputEmail1" class="form-label"
-                >course duration
+              <label for="exampleInputEmail1" class="form-label">course duration
               </label>
             </div>
             <div class="col-10">
-              <input
-                type="date"
-                class="form-control"
-                formControlName="duration"
-              />
+              <input type="date" class="form-control" formControlName="duration" />
             </div>
           </div>
           <div class="row my-3">
             <div class="col-2">
-              <label for="exampleInputEmail1" class="form-label"
-                >course trainer
+              <label for="exampleInputEmail1" class="form-label">course trainer
               </label>
             </div>
             <div class="col-10">
-              <input
-                type="text"
-                class="form-control"
-                formControlName="trainer"
-              />
+              <input type="text" class="form-control" formControlName="trainer" />
             </div>
           </div>
           <div class="row my-3">
             <div class="col-2">
-              <label for="exampleInputEmail1" class="form-label"
-                >max registrations
+              <label for="exampleInputEmail1" class="form-label">max registrations
               </label>
             </div>
             <div class="col-10">
-              <input
-                type="number"
-                class="form-control"
-                formControlName="maxRegistrations"
-              />
+              <input type="number" class="form-control" formControlName="maxRegistrations" />
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button
-            type="submit"
-            [disabled]="addForm.invalid"
-            class="btn btn-primary"
-            data-bs-dismiss="modal"
-          >
+          <button type="submit" [disabled]="addForm.invalid" class="btn btn-primary" data-bs-dismiss="modal">
             Save changes
           </button>
         </div>
@@ -196,26 +145,15 @@
 </div>
 
 <!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModal2"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-lg">
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" >
+  <div class="modal-dialog  modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header users">
         <h5 class="modal-title" id="exampleModalLabel">users</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <table class="table">
+        <table class="table users ">
           <thead>
             <tr>
               <th scope="col">#id</th>
@@ -223,6 +161,7 @@
               <th scope="col">Last Name</th>
               <th scope="col">job Title</th>
               <th scope="col">phone Number</th>
+              <th scope="col">email</th>
             </tr>
           </thead>
           <tbody>
@@ -232,6 +171,7 @@
               <td>{{ user.lastName }}</td>
               <td>{{ user.jobTitle }}</td>
               <td>{{ user.phoneNumber }}</td>
+              <td>{{user.email}}</td>
             </tr>
           </tbody>
         </table>
@@ -245,30 +185,18 @@
   </div>
 </div>
 
-<div
-  class="modal fade"
-  id="exampleModal3"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Add course</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form (ngSubmit)="addCourse()" [formGroup]="addForm" novalidate>
         <div class="modal-body">
           <div class="row my-3">
             <div class="col-2">
-              <label for="exampleInputEmail1" class="form-label"
-                >course name
+              <label for="exampleInputEmail1" class="form-label">course name
               </label>
             </div>
             <div class="col-10">
@@ -277,68 +205,43 @@
           </div>
           <div class="row my-3">
             <div class="col-2">
-              <label for="exampleInputEmail1" class="form-label"
-                >course description
+              <label for="exampleInputEmail1" class="form-label">course description
               </label>
             </div>
             <div class="col-10">
-              <input
-                type="text"
-                class="form-control"
-                formControlName="description"
-              />
+              <input type="text" class="form-control" formControlName="description" />
             </div>
           </div>
           <div class="row my-3">
             <div class="col-2">
-              <label for="exampleInputEmail1" class="form-label"
-                >course duration
+              <label for="exampleInputEmail1" class="form-label">course duration
               </label>
             </div>
             <div class="col-10">
-              <input
-                type="date"
-                class="form-control"
-                formControlName="duration"
-              />
+              <input type="date" class="form-control" formControlName="duration" />
             </div>
           </div>
           <div class="row my-3">
             <div class="col-2">
-              <label for="exampleInputEmail1" class="form-label"
-                >course trainer
+              <label for="exampleInputEmail1" class="form-label">course trainer
               </label>
             </div>
             <div class="col-10">
-              <input
-                type="text"
-                class="form-control"
-                formControlName="trainer"
-              />
+              <input type="text" class="form-control" formControlName="trainer" />
             </div>
           </div>
           <div class="row my-3">
             <div class="col-2">
-              <label for="exampleInputEmail1" class="form-label"
-                >maximum registration
+              <label for="exampleInputEmail1" class="form-label">maximum registration
               </label>
             </div>
             <div class="col-10">
-              <input
-                type="number"
-                class="form-control"
-                formControlName="maxRegistrations"
-              />
+              <input type="number" class="form-control" formControlName="maxRegistrations" />
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button
-            type="submit"
-            class="btn btn-primary"
-            data-bs-dismiss="modal"
-            [disabled]="addForm.invalid"
-          >
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="addForm.invalid">
             Save changes
           </button>
         </div>

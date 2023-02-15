@@ -1,37 +1,34 @@
-<div class="container-fluid">
+<div class="container-fluid d-flex flex-wrap">
   <app-loader class="text-center" [isLoading]="isLoading"></app-loader>
   <div class="row">
     <h1 class="text-center text-light">Courses</h1>
-    <div class="col-md-4 my-5" *ngFor="let course of courses">
-      <div class="card">
+    
+    <div class="col-md-4 my-5 d-flex" *ngFor="let course of courses">
+      <div class="card fade-in">
         <div class="card-body">
           <h5 class="card-title text-center fw-4">{{ course.name }}</h5>
           <p class="card-text">{{ course.description }}</p>
           <div class="row">
             <div class="col">
- <p class="card-text">
-            <span>duration : </span
-            >{{ getMonthsDifference(course.duration) }} months
-          </p>
-          <p class="card-text"><span>trainer : </span>{{ course.trainer }}</p>
+              <p class="card-text">
+                <span>duration : </span>{{ getMonthsDifference(course.duration) }} months
+              </p>
+              <p class="card-text"><span>trainer : </span>{{ course.trainer }}</p>
             </div>
             <div class="col mt-3">
-            <button class="btn" (click)="enrollCourse(course.id)">
-              enroll
-            </button>
-        
+              <button class="btn" (click)="enrollCourse(course.id)">
+                enroll
+              </button>
+
             </div>
           </div>
-        
+
         </div>
         <div class="card-footer">
-          <small class="text-muted text-start"
-            >number of registrations : {{ course.noOfRegistrations }}</small
-          ><br />
-          <small class="text-muted mx-auto"
-            >maximum registrations : {{ course.maxRegistrations}}</small
-          >
+          <small class="text-muted text-start">number of registrations : {{ course.noOfRegistrations }}</small><br />
+          <small class="text-muted mx-auto" >maximum registrations : {{ course.maxRegistrations}}</small>
         </div>
+       
       </div>
     </div>
   </div>

@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   courses: any | undefined;
   isLoading = false;
   message!:any;
-  i:number=0;
+
   constructor(
     private courseService: CourseService,
     private toaster: ToastrService

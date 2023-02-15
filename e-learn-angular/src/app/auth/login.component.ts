@@ -52,15 +52,22 @@ export class LoginComponent implements OnInit {
           console.log(credentials);
           this.credentialService.setCredentials(credentials, true);
           log.debug(`${this.loginForm.value.email} successfully logged in`);
-          this.router.navigate(
+          if(credentials.role=="ROLE_USER"){
+             this.router.navigate(
             [this.route.snapshot.queryParams['redirect'] || '/'],
             { replaceUrl: true }
           );
           this.toaster.info(`${this.loginForm.value.email} login successfully`);
+          }
+          else{
+            this.toaster.info(`Hello admin`)
+            this.router.navigate(['profile']);
+          }
+         
         },
         (error) => {
-          console.log(error)
           this.message=error;
+          this.toaster.error(error.error.message)
           log.debug(`Login error: ${error}`);
           this.error = error;
         }

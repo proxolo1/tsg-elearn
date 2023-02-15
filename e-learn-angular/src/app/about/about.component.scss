@@ -1,3 +1,23 @@
 table,.container{
     color: white !important;
 }
+
+.user-table{
+    color: white;
+}
+.admin-table,i{
+    color: white;
+}
+.container{
+    color: white;
+}
+table tbody tr:hover{
+  background: black;
+  color: white;
+}
+.users{
+    color: rgb(0, 0, 0) !important;
+}
+#course-name{
+    cursor: pointer;
+}

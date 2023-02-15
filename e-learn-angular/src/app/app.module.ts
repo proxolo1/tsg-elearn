@@ -25,7 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   imports: [
     ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right',
+      positionClass: 'toast-top-right',
     }),
     BrowserModule,
     ServiceWorkerModule.register('./ngsw-worker.js', {

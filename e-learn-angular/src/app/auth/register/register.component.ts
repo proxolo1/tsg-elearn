@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from '../authentication.service';
@@ -32,14 +32,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void { }
   register() {
-
+    this.isLoading=true;
     this.subscription = this.authenticationService.register(this.loginForm.value).subscribe(
       (res) => {
+        this.isLoading=false;
         this.toaster.success('registration successfull');
         this.router.navigate(['login']);
       },
       (error) => {
-        console.log(error)
         this.toaster.error(error.error.message)
       }
     );
@@ -48,11 +48,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.loginForm = this.formBuilder.group(
       {
         email: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required],
+        password: ['', Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         jobTitle: ['', Validators.required],
-        phoneNumber: ['', Validators.required],
+        phoneNumber: ['',Validators.pattern(/^(\+?\d{1,3}[- ]?)?\d{10}$/)],
         confirmPassword: ['', Validators.required],
       },
       { validator: this.checkPasswords }
@@ -63,6 +63,5 @@ export class RegisterComponent implements OnInit, OnDestroy {
     let confirmPass = group.controls['confirmPassword'].value;
     return pass == confirmPass ? null : { notSame: true };
   }
-
-
+ 
 }

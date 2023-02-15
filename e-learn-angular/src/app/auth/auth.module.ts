@@ -9,7 +9,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login.component';
 import { RegisterComponent } from './register/register.component';
 import { ToastrModule } from 'ngx-toastr';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   imports: [
     CommonModule,
@@ -19,9 +19,10 @@ import { ToastrModule } from 'ngx-toastr';
     I18nModule,
     AuthRoutingModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right',
+      positionClass: 'toast-top-right',
       timeOut: 5000
-    })
+    }),
+    BrowserAnimationsModule
   ],
   declarations: [LoginComponent, RegisterComponent],
 })

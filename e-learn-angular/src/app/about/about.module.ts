@@ -6,13 +6,14 @@ import { AboutRoutingModule } from './about-routing.module';
 import { AboutComponent } from './about.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   imports: [
     CommonModule,
     TranslateModule,
     AboutRoutingModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,AgGridModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     })

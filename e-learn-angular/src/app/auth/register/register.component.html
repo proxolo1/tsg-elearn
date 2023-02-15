@@ -1,6 +1,5 @@
 <div class="login-container">
   <div class="login-box">
-    <div></div>
     <div class="container register">
       <div class="card col-md-4 mx-auto">
         <div class="card-body">
@@ -8,6 +7,7 @@
             <h3  translate>Registration</h3>
           </h4>
           <form (ngSubmit)="register()" [formGroup]="loginForm" novalidate>
+          
             <div
               class="alert alert-danger"
               [hidden]="!error || isLoading"
@@ -110,6 +110,7 @@
                   [placeholder]="'phoneNumber' | translate"
                 />
                 <span hidden translate>phone number</span>
+              
                 <small
                   [hidden]="
                     loginForm.controls['phoneNumber'].valid ||
@@ -118,7 +119,7 @@
                   class="text-danger"
                   translate
                 >
-                  phone number required
+                  phone number required and 10 digit number
                 </small>
               </label>
               <label class="d-block mb-3">
@@ -139,7 +140,7 @@
                   class="text-danger"
                   translate
                 >
-                  Password is required
+                  Password is required and should strong
                 </small>
               </label>
               <label class="d-block mb-3">
@@ -177,7 +178,7 @@
                 [disabled]="loginForm.invalid || isLoading"
               >
                 <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
-                <span translate>Login</span>
+                <span translate>Register</span>
               </button>
             </div>
             <div class="col text-end">
