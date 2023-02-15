@@ -48,7 +48,7 @@ public class AuthController {
      * @throws InvocationTargetException
      */
     @PostMapping("register")
-    public ResponseEntity<AuthResponse> registerUser(@RequestBody AuthRequest request) throws IllegalAccessException, InvocationTargetException {
+    public ResponseEntity<AuthResponse> registerUser(@RequestBody AuthRequest request) throws Exception {
         logger.info("Received a request to the endpoint '/register' : {}",request);
         return authService.registerUser(request);
     }

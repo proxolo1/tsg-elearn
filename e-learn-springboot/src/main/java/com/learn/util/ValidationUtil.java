@@ -3,8 +3,13 @@ package com.learn.util;
 
 import org.apache.commons.lang3.StringUtils;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 /**
  * Utility class for validation related operations.
  *
@@ -14,6 +19,9 @@ import java.lang.reflect.Method;
  * </p>
  */
 public class ValidationUtil {
+    private static final String AES_ALGORITHM = "AES";
+    private static final String AES_TRANSFORMATION = "AES/ECB/PKCS5Padding";
+    private static final String KEY = "mysecretkey12aaa";
     /**
      * Private constructor to prevent instantiation of the class.
      *
@@ -96,5 +104,15 @@ public class ValidationUtil {
      */
     public static boolean validatePassword(String password){
         return  password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+    }
+    public static String decrypt(String encryptedPassword)  {
+        int[] asciiValues = new int[encryptedPassword.length()];
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < encryptedPassword.length(); i++) {
+            asciiValues[i] = (int) encryptedPassword.charAt(i)/10;
+            char c = (char) asciiValues[i];
+            sb.append(c);
+        }
+        return sb.toString();
     }
 }

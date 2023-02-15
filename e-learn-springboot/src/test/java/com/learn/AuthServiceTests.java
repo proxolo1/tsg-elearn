@@ -50,7 +50,7 @@ class AuthServiceTests {
     private JwtService jwtService;
     @Test
 
-    void test_registerUser() throws InvocationTargetException, IllegalAccessException {
+    void test_registerUser() throws Exception {
         AuthRequest request = new AuthRequest();
         request.setFirstName("John");
         request.setLastName("Doe");
