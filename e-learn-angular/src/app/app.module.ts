@@ -21,7 +21,9 @@ import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+import { PopoverComponent } from './@shared/popover/popover.component';
 @NgModule({
   imports: [
     ToastrModule.forRoot({
@@ -33,6 +35,7 @@ import { ToastrModule } from 'ngx-toastr';
     }),
     FormsModule,
     HttpClientModule,
+    OverlayPanelModule,
     RouterModule,
     TranslateModule.forRoot(),
     NgbModule,
@@ -59,6 +62,7 @@ import { ToastrModule } from 'ngx-toastr';
       provide: RouteReuseStrategy,
       useClass: RouteReusableStrategy,
     },
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent],
 })

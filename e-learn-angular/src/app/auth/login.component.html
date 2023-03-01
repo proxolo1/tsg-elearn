@@ -1,4 +1,7 @@
+
 <div class="login-container">
+
+    
   <div class="login-box">
     <h1 class="text-light" translate>APP_NAME</h1>
     <div>
@@ -11,70 +14,50 @@
             <i class="far fa-3x fa-user-circle text-muted"></i>
           </h4>
           <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
-            <div
-              class="alert alert-danger"
-              [hidden]="!error || isLoading"
-              translate
-            >
+            <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
               {{message?.error?.message}}
             </div>
             <div class="m-3">
               <label class="d-block my-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  formControlName="email"
-                  autocomplete="username"
-                  [placeholder]="'Username' | translate"
-                />
+                <input type="text" class="form-control" formControlName="email" autocomplete="username"
+                  [placeholder]="'Username' | translate" />
+                 
+                  <!-- <i class="fa-solid fa-circle-info" (mouseenter)="onMouseEnter(pop,$event)" (mouseleave)="onMouseLeave(pop)"></i> -->
                 <span hidden translate>Username</span>
-                <small
-                  [hidden]="
+                <small [hidden]="
                     loginForm.controls['email'].valid ||
                     loginForm.controls['email'].untouched
-                  "
-                  class="text-danger"
-                  translate
-                >
+                  " class="text-danger" translate>
                   email is required
                 </small>
-              </label>
+              </label> 
+              <aul-popover class="pop-username"  [buttonStyle]="'icon'" [title]="usernameTitle" [type]="'text'" [body]="usernameBody" ></aul-popover>
               <label class="d-block mb-3">
-                <input
-                  type="password"
-                  class="form-control"
-                  formControlName="password"
-                  autocomplete="current-password"
-                  [placeholder]="'Password' | translate"
-                  required
-                />
+                <input type="password" class="form-control" formControlName="password" autocomplete="current-password"
+                  [placeholder]="'Password' | translate" required />
+                 
                 <span hidden translate>Password</span>
-                <small
-                  [hidden]="
+                <small [hidden]="
                     loginForm.controls['password'].valid ||
                     loginForm.controls['password'].untouched
-                  "
-                  class="text-danger"
-                  translate
-                >
+                  " class="text-danger" translate>
                   Password is required
                 </small>
               </label>
+              <aul-popover class="pop-password" [buttonStyle]="'icon'" [title]="passwordTitle" [type]="'html'" [body]="passwordBody"></aul-popover>
             </div>
             <div class="m-3">
-              <button
-                class="btn btn-primary w-100"
-                type="submit"
-                [disabled]="loginForm.invalid || isLoading"
-              >
+              <button class="btn btn-primary w-100" type="submit" [disabled]="loginForm.invalid || isLoading">
                 <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
                 <span translate>Login</span>
               </button>
             </div>
             <div class="text-end">
-              <span>Don't have accournt ?</span> <a href="register">signUp</a>
+              <aul-popover [buttonStyle]="'label'" [title]="'Dont have account'" [type]="'html'" [body]="dontHave"></aul-popover>
+              <a href="#/register">signUp</a>
             </div>
           </form>
+          
         </div>
       </div>
     </div>

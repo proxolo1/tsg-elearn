@@ -20,3 +20,11 @@ body{
     background-color: $primary;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+.p-overlaypanel{
+    .p-overlaypanel-content {
+        padding: 0px !important;
+    }
+ }
+ .p-overlaypanel:after,.p-overlaypanel:before{
+    left: calc(var(--overlayArrowLeft, 0) + 0.25rem) !important;
+ }

@@ -10,7 +10,7 @@ export const environment = {
   production: true,
   version: env['npm_package_version'],
   serverUrl:
-    'http://elearn-env.eba-6x3438k2.ap-northeast-1.elasticbeanstalk.com/',
+    'http://elearn-env-1.eba-nm32m7vp.ap-northeast-1.elasticbeanstalk.com/',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
 };

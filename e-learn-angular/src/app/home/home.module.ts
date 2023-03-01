@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { Angulartics2Module } from 'angulartics2';
 
@@ -19,5 +19,8 @@ import { ToastrModule } from 'ngx-toastr';
     }),
   ],
   declarations: [HomeComponent],
+  providers:[
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ]
 })
 export class HomeModule {}

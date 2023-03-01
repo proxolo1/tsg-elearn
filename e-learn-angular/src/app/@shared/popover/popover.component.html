@@ -1,0 +1,38 @@
+<ng-container *ngIf="buttonStyle == 'icon'">
+    <i class="fa-solid fa-circle-info" (mousedown)="onMouseDown($event)"></i>
+    <p-overlayPanel #panel>
+        <div class="container-fluid ">
+            <div class="row title py-1">
+                <div class="col-8">
+                       <span class="text-start">{{title}}</span>
+                </div>
+                <div class="col-4 text-end"(click)="panel.hide()">
+        
+                    <i class="fa-solid fa-xmark close"></i>
+        
+                </div>
+             
+            </div>
+            
+            <div class="row m-2 " *ngIf="type=='text'"><span>{{body}}</span></div>
+            <div class="row m-2" *ngIf="type=='html'" [innerHTML]="body"></div>
+        </div>
+    </p-overlayPanel>
+</ng-container>
+
+<ng-container *ngIf="buttonStyle == 'label'">
+    <div id="pop-over-box">
+
+        <span class="btn btn-sm" (mousedown)="onMouseDown($event)">
+            {{title}}
+        </span>
+        <p-overlayPanel #panel>
+            <div class="container-fluid ">
+                <div class="row title"><span class="text-start">{{title}}</span></div>
+                <div class="row m-2" *ngIf="type=='text'"><span>{{body}}</span></div>
+                <div class="row m-2" *ngIf="type=='html'" [innerHTML]="body"></div>
+            </div>
+        </p-overlayPanel>
+    </div>
+</ng-container>
+

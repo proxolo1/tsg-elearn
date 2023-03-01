@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
@@ -8,6 +8,7 @@ import { Logger, UntilDestroy, untilDestroyed } from '@shared';
 import { AuthenticationService } from './authentication.service';
 import { CredentialsService } from './credentials.service';
 import { ToastrService } from 'ngx-toastr';
+import { PopoverComponent } from '@app/@shared/popover/popover.component';
 
 const log = new Logger('Login');
 
@@ -23,6 +24,16 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   isLoading = false;
   message:any;
+  usernameTitle:string="Enter Your Username";
+  passwordTitle:string="Enter Your Password";
+  usernameBody:string=" Please enter your username to login to your account.";
+  passwordBody:string=`<ol>
+  <li>Use at least 12 characters</li>
+  <li>Include a mix of uppercase and lowercase letters</li>
+  <li>Include at least one number</li>
+  <li>Include at least one special character (e.g. !,@,#,$,%,&amp;,*)</li>
+</ol>`;
+  dontHave=`<span>Don't have an account yet? <a href="register">Sign up </a>now to enjoy all the benefits.</span>`
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -81,4 +92,5 @@ export class LoginComponent implements OnInit {
       remember: true,
     });
   }
+
 }
