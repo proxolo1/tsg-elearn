@@ -43,8 +43,9 @@
     "bootstrap": "^5.2.3",
     "crypto-js": "^4.1.1",
     "lodash": "^4.17.20",
+    "my-lib": "^2.0.1",
     "ngx-toastr": "^14.3.0",
-    "primeng": "^13.0.2",
+    "primeng": "^13.4.1",
     "rxjs": "^7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -81,6 +82,7 @@
     "https-proxy-agent": "^5.0.0",
     "husky": "^8.0.1",
     "jest": "^28.1.3",
+    "ng-packagr": "^14.1.0",
     "postcss": "^8.4.5",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",

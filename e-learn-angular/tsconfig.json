@@ -24,7 +24,12 @@
       "@app/*": ["src/app/*"],
       "@shared": ["src/app/@shared"],
       "@shared/*": ["src/app/@shared/*"],
-      "@env/*": ["src/environments/*"]
+      "@env/*": [
+        "src/environments/*"
+      ],
+      "my-lib": [
+        "dist/my-lib"
+      ]
     }
   },
   "angularCompilerOptions": {
