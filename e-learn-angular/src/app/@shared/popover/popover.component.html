@@ -28,7 +28,17 @@
         </span>
         <p-overlayPanel #panel>
             <div class="container-fluid ">
-                <div class="row title"><span class="text-start">{{title}}</span></div>
+                <div class="row title py-1">
+                    <div class="col-8">
+                           <span class="text-start">{{title}}</span>
+                    </div>
+                    <div class="col-4 text-end"(click)="panel.hide()">
+            
+                        <i class="fa-solid fa-xmark close"></i>
+            
+                    </div>
+                 
+                </div>
                 <div class="row m-2" *ngIf="type=='text'"><span>{{body}}</span></div>
                 <div class="row m-2" *ngIf="type=='html'" [innerHTML]="body"></div>
             </div>
